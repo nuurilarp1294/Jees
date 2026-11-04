@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System Diagnostics</title>
+<style>
+body {
+ background: #080d12;
+ color: #65e6a2;
+ font-family: monospace;
+ padding: 25px;
+}
+h2 { color: white; }
+#bar {
+ background: #26343a;
+ height: 10px;
+ border-radius: 10px;
+ overflow: hidden;
+}
+#fill {
+ background: #65e6a2;
+ width: 0%;
+ height: 100%;
+}
+</style>
+</head>
+<body>
+<h2>System Diagnostics</h2>
+<p id="status">Initializing diagnostics...</p>
+<div id="bar"><div id="fill"></div></div>
+<p id="log"></p>
+<script>
+let steps = [
+ "Checking system status...",
+ "Analyzing network settings...",
+ "Running security simulation...",
+ "Diagnostics complete."
+];
+let i = 0;
+let timer = setInterval(() => {
+ document.getElementById("status").textContent = steps[i];
+ document.getElementById("fill").style.width =
+ ((i + 1) * 25) + "%";
+ document.getElementById("log").textContent +=
+ "> " + steps[i] + "\n";
+ i++;
+ if (i === steps.length) {
+  clearInterval(timer);
+  document.getElementById("status").textContent =
+   ".";
+ }
+}, 2000);
+</script>
+</body>
+</html>
